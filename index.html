@@ -2,10 +2,101 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Pixel Pet - Interactive Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <h1>how are you</h1> 
+    <div class="container">
+        <header>
+            <h1>🎮 Virtual Pixel Pet</h1>
+            <p class="subtitle">Care for your digital companion!</p>
+        </header>
+
+        <main>
+            <!-- Pet Display Area -->
+            <div class="pet-container">
+                <div class="pet-home">
+                    <div class="pet" id="pet">
+                        <div class="pet-body"></div>
+                        <div class="pet-eye pet-eye-left"></div>
+                        <div class="pet-eye pet-eye-right"></div>
+                        <div class="pet-mouth"></div>
+                    </div>
+                    <div class="pet-mood" id="moodDisplay">😊 Happy</div>
+                </div>
+            </div>
+
+            <!-- Stats Display -->
+            <div class="stats-panel">
+                <div class="stat">
+                    <label>Hunger:</label>
+                    <div class="stat-bar">
+                        <div class="stat-fill hunger-fill" id="hungerBar"></div>
+                    </div>
+                    <span id="hungerValue">100%</span>
+                </div>
+                <div class="stat">
+                    <label>Happiness:</label>
+                    <div class="stat-bar">
+                        <div class="stat-fill happiness-fill" id="happinessBar"></div>
+                    </div>
+                    <span id="happinessValue">100%</span>
+                </div>
+                <div class="stat">
+                    <label>Energy:</label>
+                    <div class="stat-bar">
+                        <div class="stat-fill energy-fill" id="energyBar"></div>
+                    </div>
+                    <span id="energyValue">100%</span>
+                </div>
+                <div class="stat">
+                    <label>Age:</label>
+                    <span id="ageValue">0 days</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="actions-panel">
+                <h2>Actions</h2>
+                <div class="button-grid">
+                    <button class="action-btn feed-btn" onclick="feedPet()">
+                        <span class="btn-emoji">🍖</span>
+                        <span class="btn-text">Feed</span>
+                    </button>
+                    <button class="action-btn play-btn" onclick="playWithPet()">
+                        <span class="btn-emoji">🎾</span>
+                        <span class="btn-text">Play</span>
+                    </button>
+                    <button class="action-btn sleep-btn" onclick="putToSleep()">
+                        <span class="btn-emoji">😴</span>
+                        <span class="btn-text">Sleep</span>
+                    </button>
+                    <button class="action-btn pet-btn" onclick="petPet()">
+                        <span class="btn-emoji">🤚</span>
+                        <span class="btn-text">Pet</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pet Name Input -->
+            <div class="pet-name-section">
+                <label for="petName">Pet Name:</label>
+                <input type="text" id="petName" placeholder="Enter your pet's name" value="Pixel">
+                <button onclick="updatePetName()" class="update-btn">Update Name</button>
+            </div>
+
+            <!-- Reset Game -->
+            <div class="reset-section">
+                <button onclick="resetGame()" class="reset-btn">🔄 Reset Game</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ | Open Source | <a href="https://github.com/adeniyisogo/github-practical" target="_blank">GitHub</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

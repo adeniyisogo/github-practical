@@ -1,0 +1,467 @@
+/* ===== Global Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 100%;
+    padding: 40px;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Header ===== */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: #667eea;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #999;
+    font-size: 1em;
+}
+
+/* ===== Pet Container ===== */
+.pet-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.pet-home {
+    background: linear-gradient(180deg, #e0f7ff 0%, #b3e5fc 100%);
+    border-radius: 15px;
+    padding: 40px;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Pet Design */
+.pet {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.pet-body {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ffeb3b 0%, #fdd835 100%);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.pet-eye {
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 25px;
+}
+
+.pet-eye-left {
+    left: 20px;
+    animation: blink 3s infinite;
+}
+
+.pet-eye-right {
+    right: 20px;
+    animation: blink 3s infinite 0.1s;
+}
+
+@keyframes blink {
+    0%, 10%, 12%, 100% {
+        transform: scaleY(1);
+    }
+    11% {
+        transform: scaleY(0.1);
+    }
+}
+
+.pet-mouth {
+    width: 20px;
+    height: 10px;
+    border: 2px solid #333;
+    border-top: none;
+    border-radius: 0 0 20px 20px;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.pet-mood {
+    font-size: 1.2em;
+    color: #667eea;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* ===== Stats Panel ===== */
+.stats-panel {
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.stat:last-child {
+    margin-bottom: 0;
+}
+
+.stat label {
+    font-weight: bold;
+    color: #333;
+    min-width: 100px;
+}
+
+.stat-bar {
+    flex: 1;
+    height: 20px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.stat-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+    color: white;
+    font-weight: bold;
+}
+
+.hunger-fill {
+    background: linear-gradient(90deg, #ff6b6b, #ff8787);
+}
+
+.happiness-fill {
+    background: linear-gradient(90deg, #51cf66, #69db7c);
+}
+
+.energy-fill {
+    background: linear-gradient(90deg, #4ecdc4, #44a08d);
+}
+
+.stat span {
+    min-width: 50px;
+    text-align: right;
+    font-weight: bold;
+    color: #667eea;
+}
+
+/* ===== Actions Panel ===== */
+.actions-panel {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.actions-panel h2 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.feed-btn {
+    background: linear-gradient(135deg, #ff6b6b, #ff5252);
+}
+
+.feed-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+}
+
+.play-btn {
+    background: linear-gradient(135deg, #4ecdc4, #44a08d);
+}
+
+.play-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(78, 205, 196, 0.3);
+}
+
+.sleep-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.sleep-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.pet-btn {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.pet-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(245, 87, 108, 0.3);
+}
+
+.btn-emoji {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.btn-text {
+    font-size: 0.9em;
+}
+
+.action-btn:active {
+    transform: translateY(-1px);
+}
+
+/* ===== Pet Name Section ===== */
+.pet-name-section {
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.pet-name-section label {
+    font-weight: bold;
+    color: #333;
+}
+
+.pet-name-section input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.pet-name-section input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.update-btn {
+    padding: 8px 15px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.update-btn:hover {
+    background: #764ba2;
+    transform: translateY(-2px);
+}
+
+/* ===== Reset Section ===== */
+.reset-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.reset-btn {
+    padding: 10px 20px;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+    background: #ff5252;
+    transform: translateY(-2px);
+}
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    color: #999;
+    font-size: 0.9em;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+footer a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Animations ===== */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.pet.happy {
+    animation: pulse 0.5s ease;
+}
+
+.pet.sad {
+    animation: shake 0.5s ease;
+}
+
+.pet.sleeping {
+    animation: none;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    .pet-home {
+        width: 220px;
+        height: 220px;
+        padding: 30px;
+    }
+
+    .pet {
+        width: 60px;
+        height: 60px;
+    }
+
+    .pet-body {
+        width: 60px;
+        height: 60px;
+    }
+
+    .button-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pet-name-section {
+        flex-direction: column;
+    }
+
+    .pet-name-section input {
+        width: 100%;
+    }
+}
