@@ -19,9 +19,9 @@ body {
     background: white;
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
+    max-width: 700px;
     width: 100%;
-    padding: 40px;
+    padding: 30px;
     animation: slideIn 0.5s ease-out;
 }
 
@@ -39,57 +39,121 @@ body {
 /* ===== Header ===== */
 header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 header h1 {
     color: #667eea;
     font-size: 2.5em;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .subtitle {
     color: #999;
-    font-size: 1em;
+    font-size: 0.95em;
+    margin-bottom: 15px;
+}
+
+.header-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.coin-display, .level-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f0f0f0;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.coin-icon {
+    font-size: 1.3em;
+}
+
+/* ===== Environment ===== */
+.environment {
+    background: linear-gradient(180deg, #87ceeb 0%, #e0f7ff 100%);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.environment::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.environment.night {
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
 }
 
 /* ===== Pet Container ===== */
 .pet-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
 }
 
 .pet-home {
-    background: linear-gradient(180deg, #e0f7ff 0%, #b3e5fc 100%);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 15px;
-    padding: 40px;
+    padding: 30px;
     width: 280px;
-    height: 280px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Pet Design */
 .pet {
     position: relative;
-    width: 80px;
-    height: 80px;
-    margin-bottom: 20px;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
 }
 
 .pet-body {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     background: linear-gradient(135deg, #ffeb3b 0%, #fdd835 100%);
     border-radius: 50%;
     position: relative;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     animation: bounce 2s infinite;
+    transition: all 0.3s ease;
+}
+
+.pet-body.fire {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+}
+
+.pet-body.ice {
+    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+}
+
+.pet-body.galaxy {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 @keyframes bounce {
@@ -97,26 +161,26 @@ header h1 {
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-10px);
+        transform: translateY(-15px);
     }
 }
 
 .pet-eye {
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     background: #333;
     border-radius: 50%;
     position: absolute;
-    top: 25px;
+    top: 30px;
 }
 
 .pet-eye-left {
-    left: 20px;
+    left: 25px;
     animation: blink 3s infinite;
 }
 
 .pet-eye-right {
-    right: 20px;
+    right: 25px;
     animation: blink 3s infinite 0.1s;
 }
 
@@ -130,11 +194,11 @@ header h1 {
 }
 
 .pet-mouth {
-    width: 20px;
-    height: 10px;
+    width: 25px;
+    height: 12px;
     border: 2px solid #333;
     border-top: none;
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 25px 25px;
     position: absolute;
     bottom: 15px;
     left: 50%;
@@ -142,10 +206,92 @@ header h1 {
 }
 
 .pet-mood {
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: #667eea;
     font-weight: bold;
     text-align: center;
+    margin-bottom: 10px;
+}
+
+.xp-bar-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.xp-bar {
+    width: 100%;
+    height: 15px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.xp-bar::after {
+    content: '';
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.xp-text {
+    font-size: 0.8em;
+    color: #999;
+}
+
+/* ===== Tab Navigation ===== */
+.tab-navigation {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 12px;
+    border: 2px solid #ddd;
+    background: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    color: #666;
+}
+
+.tab-btn:hover {
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.tab-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+/* ===== Tab Content ===== */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ===== Stats Panel ===== */
@@ -153,7 +299,7 @@ header h1 {
     background: #f5f5f5;
     border-radius: 10px;
     padding: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .stat {
@@ -206,6 +352,10 @@ header h1 {
     background: linear-gradient(90deg, #4ecdc4, #44a08d);
 }
 
+.health-fill {
+    background: linear-gradient(90deg, #ffa500, #ffb84d);
+}
+
 .stat span {
     min-width: 50px;
     text-align: right;
@@ -213,23 +363,80 @@ header h1 {
     color: #667eea;
 }
 
-/* ===== Actions Panel ===== */
-.actions-panel {
+/* ===== Pet Info Section ===== */
+.pet-info-section {
     background: #f9f9f9;
     border-radius: 10px;
+    padding: 15px;
+}
+
+.pet-info-section h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-item label {
+    font-weight: bold;
+    color: #333;
+    font-size: 0.9em;
+}
+
+.info-item input {
+    padding: 8px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.info-item input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.update-btn {
+    padding: 6px 12px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+}
+
+.update-btn:hover {
+    background: #764ba2;
+}
+
+/* ===== Actions Panel ===== */
+.actions-panel {
+    background: #f5f5f5;
+    border-radius: 10px;
     padding: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .actions-panel h2 {
     color: #667eea;
     margin-bottom: 15px;
-    font-size: 1.2em;
 }
 
 .button-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
 }
 
@@ -241,7 +448,7 @@ header h1 {
     padding: 15px;
     border: none;
     border-radius: 10px;
-    font-size: 1em;
+    font-size: 0.9em;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -252,36 +459,29 @@ header h1 {
     background: linear-gradient(135deg, #ff6b6b, #ff5252);
 }
 
-.feed-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
-}
-
 .play-btn {
     background: linear-gradient(135deg, #4ecdc4, #44a08d);
-}
-
-.play-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(78, 205, 196, 0.3);
 }
 
 .sleep-btn {
     background: linear-gradient(135deg, #667eea, #764ba2);
 }
 
-.sleep-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-}
-
 .pet-btn {
     background: linear-gradient(135deg, #f093fb, #f5576c);
 }
 
-.pet-btn:hover {
+.heal-btn {
+    background: linear-gradient(135deg, #ffa500, #ffb84d);
+}
+
+.train-btn {
+    background: linear-gradient(135deg, #667eea, #4ecdc4);
+}
+
+.action-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(245, 87, 108, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .btn-emoji {
@@ -290,63 +490,193 @@ header h1 {
 }
 
 .btn-text {
-    font-size: 0.9em;
+    font-size: 0.85em;
 }
 
-.action-btn:active {
-    transform: translateY(-1px);
-}
-
-/* ===== Pet Name Section ===== */
-.pet-name-section {
+/* ===== Shop Panel ===== */
+.shop-panel {
     background: #f5f5f5;
     border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 20px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
+    padding: 20px;
 }
 
-.pet-name-section label {
+.shop-panel h2 {
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.shop-info {
+    color: #666;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.shop-category {
+    margin-bottom: 25px;
+}
+
+.shop-category h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.shop-item {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.shop-item:hover {
+    transform: translateY(-5px);
+    border-color: #667eea;
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.2);
+}
+
+.item-emoji {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.item-name {
     font-weight: bold;
     color: #333;
+    margin-bottom: 8px;
 }
 
-.pet-name-section input {
-    flex: 1;
-    padding: 8px 12px;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    font-size: 1em;
-    transition: border-color 0.3s ease;
+.item-price {
+    color: #667eea;
+    font-weight: bold;
+    font-size: 0.95em;
 }
 
-.pet-name-section input:focus {
-    outline: none;
-    border-color: #667eea;
+/* ===== Game Panel ===== */
+.game-panel {
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
 }
 
-.update-btn {
-    padding: 8px 15px;
-    background: #667eea;
+.game-panel h2 {
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.game-info {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.start-game-btn {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #51cf66, #69db7c);
     color: white;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1.1em;
     font-weight: bold;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.update-btn:hover {
+.start-game-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(81, 207, 102, 0.3);
+}
+
+.game-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.game-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #667eea;
+}
+
+.game-area {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, #e0f7ff 0%, #b3e5fc 100%);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.treat {
+    position: absolute;
+    font-size: 2em;
+    cursor: pointer;
+    user-select: none;
+    animation: treatBounce 1s infinite;
+}
+
+@keyframes treatBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.game-result {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.game-result h3 {
+    color: #667eea;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.game-result p {
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.play-again-btn {
+    padding: 10px 25px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.play-again-btn:hover {
     background: #764ba2;
-    transform: translateY(-2px);
 }
 
 /* ===== Reset Section ===== */
 .reset-section {
     text-align: center;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .reset-btn {
@@ -372,6 +702,7 @@ footer {
     font-size: 0.9em;
     border-top: 1px solid #eee;
     padding-top: 20px;
+    margin-top: 20px;
 }
 
 footer a {
@@ -406,15 +737,6 @@ footer a:hover {
     }
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 .pet.happy {
     animation: pulse 0.5s ease;
 }
@@ -423,45 +745,38 @@ footer a:hover {
     animation: shake 0.5s ease;
 }
 
-.pet.sleeping {
-    animation: none;
-}
-
 /* ===== Responsive Design ===== */
 @media (max-width: 600px) {
     .container {
-        padding: 20px;
+        padding: 15px;
     }
 
     header h1 {
-        font-size: 2em;
+        font-size: 1.8em;
     }
 
-    .pet-home {
-        width: 220px;
-        height: 220px;
-        padding: 30px;
-    }
-
-    .pet {
-        width: 60px;
-        height: 60px;
-    }
-
-    .pet-body {
-        width: 60px;
-        height: 60px;
+    .tab-navigation {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .button-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .pet-name-section {
-        flex-direction: column;
+    .shop-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .pet-name-section input {
-        width: 100%;
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .game-area {
+        height: 250px;
     }
 }

@@ -3,97 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Pixel Pet - Interactive Game</title>
+    <title>Pixel Pet Pro - Ultimate Virtual Pet Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🎮 Virtual Pixel Pet</h1>
-            <p class="subtitle">Care for your digital companion!</p>
+            <h1>🎮 Pixel Pet Pro</h1>
+            <p class="subtitle">The Ultimate Virtual Pet Experience</p>
+            <div class="header-stats">
+                <div class="coin-display">
+                    <span class="coin-icon">💰</span>
+                    <span id="coinCount">0</span>
+                </div>
+                <div class="level-display">
+                    <span>Level <span id="levelDisplay">1</span></span>
+                </div>
+            </div>
         </header>
 
         <main>
-            <!-- Pet Display Area -->
-            <div class="pet-container">
-                <div class="pet-home">
-                    <div class="pet" id="pet">
-                        <div class="pet-body"></div>
-                        <div class="pet-eye pet-eye-left"></div>
-                        <div class="pet-eye pet-eye-right"></div>
-                        <div class="pet-mouth"></div>
+            <!-- Environment Background -->
+            <div class="environment" id="environment">
+                <!-- Pet Display Area -->
+                <div class="pet-container">
+                    <div class="pet-home">
+                        <div class="pet" id="pet">
+                            <div class="pet-body"></div>
+                            <div class="pet-eye pet-eye-left"></div>
+                            <div class="pet-eye pet-eye-right"></div>
+                            <div class="pet-mouth"></div>
+                        </div>
+                        <div class="pet-mood" id="moodDisplay">😊 Happy</div>
+                        <div class="xp-bar-container">
+                            <div class="xp-bar" id="xpBar"></div>
+                            <span class="xp-text" id="xpText">0/100 XP</span>
+                        </div>
                     </div>
-                    <div class="pet-mood" id="moodDisplay">😊 Happy</div>
                 </div>
             </div>
 
-            <!-- Stats Display -->
-            <div class="stats-panel">
-                <div class="stat">
-                    <label>Hunger:</label>
-                    <div class="stat-bar">
-                        <div class="stat-fill hunger-fill" id="hungerBar"></div>
+            <!-- Tab Navigation -->
+            <div class="tab-navigation">
+                <button class="tab-btn active" onclick="switchTab('stats')">📊 Stats</button>
+                <button class="tab-btn" onclick="switchTab('actions')">🎮 Actions</button>
+                <button class="tab-btn" onclick="switchTab('shop')">🛍️ Shop</button>
+                <button class="tab-btn" onclick="switchTab('game')">🎯 Mini-Game</button>
+            </div>
+
+            <!-- Stats Tab -->
+            <div class="tab-content active" id="stats-tab">
+                <div class="stats-panel">
+                    <div class="stat">
+                        <label>Hunger:</label>
+                        <div class="stat-bar">
+                            <div class="stat-fill hunger-fill" id="hungerBar"></div>
+                        </div>
+                        <span id="hungerValue">100%</span>
                     </div>
-                    <span id="hungerValue">100%</span>
-                </div>
-                <div class="stat">
-                    <label>Happiness:</label>
-                    <div class="stat-bar">
-                        <div class="stat-fill happiness-fill" id="happinessBar"></div>
+                    <div class="stat">
+                        <label>Happiness:</label>
+                        <div class="stat-bar">
+                            <div class="stat-fill happiness-fill" id="happinessBar"></div>
+                        </div>
+                        <span id="happinessValue">100%</span>
                     </div>
-                    <span id="happinessValue">100%</span>
-                </div>
-                <div class="stat">
-                    <label>Energy:</label>
-                    <div class="stat-bar">
-                        <div class="stat-fill energy-fill" id="energyBar"></div>
+                    <div class="stat">
+                        <label>Energy:</label>
+                        <div class="stat-bar">
+                            <div class="stat-fill energy-fill" id="energyBar"></div>
+                        </div>
+                        <span id="energyValue">100%</span>
                     </div>
-                    <span id="energyValue">100%</span>
+                    <div class="stat">
+                        <label>Health:</label>
+                        <div class="stat-bar">
+                            <div class="stat-fill health-fill" id="healthBar"></div>
+                        </div>
+                        <span id="healthValue">100%</span>
+                    </div>
                 </div>
-                <div class="stat">
-                    <label>Age:</label>
-                    <span id="ageValue">0 days</span>
+
+                <div class="pet-info-section">
+                    <h3>Pet Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Name:</label>
+                            <input type="text" id="petName" placeholder="Enter pet name" value="Pixel">
+                            <button onclick="updatePetName()" class="update-btn">Update</button>
+                        </div>
+                        <div class="info-item">
+                            <label>Age: <span id="ageValue">0 mins</span></label>
+                        </div>
+                        <div class="info-item">
+                            <label>Level: <span id="levelValue">1</span></label>
+                        </div>
+                        <div class="info-item">
+                            <label>Skin: <span id="skinValue">Classic</span></label>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Action Buttons -->
-            <div class="actions-panel">
-                <h2>Actions</h2>
-                <div class="button-grid">
-                    <button class="action-btn feed-btn" onclick="feedPet()">
-                        <span class="btn-emoji">🍖</span>
-                        <span class="btn-text">Feed</span>
-                    </button>
-                    <button class="action-btn play-btn" onclick="playWithPet()">
-                        <span class="btn-emoji">🎾</span>
-                        <span class="btn-text">Play</span>
-                    </button>
-                    <button class="action-btn sleep-btn" onclick="putToSleep()">
-                        <span class="btn-emoji">😴</span>
-                        <span class="btn-text">Sleep</span>
-                    </button>
-                    <button class="action-btn pet-btn" onclick="petPet()">
-                        <span class="btn-emoji">🤚</span>
-                        <span class="btn-text">Pet</span>
-                    </button>
+            <!-- Actions Tab -->
+            <div class="tab-content" id="actions-tab">
+                <div class="actions-panel">
+                    <h2>Actions</h2>
+                    <div class="button-grid">
+                        <button class="action-btn feed-btn" onclick="feedPet()">
+                            <span class="btn-emoji">🍖</span>
+                            <span class="btn-text">Feed</span>
+                        </button>
+                        <button class="action-btn play-btn" onclick="playWithPet()">
+                            <span class="btn-emoji">🎾</span>
+                            <span class="btn-text">Play</span>
+                        </button>
+                        <button class="action-btn sleep-btn" onclick="putToSleep()">
+                            <span class="btn-emoji">😴</span>
+                            <span class="btn-text">Sleep</span>
+                        </button>
+                        <button class="action-btn pet-btn" onclick="petPet()">
+                            <span class="btn-emoji">🤚</span>
+                            <span class="btn-text">Pet</span>
+                        </button>
+                        <button class="action-btn heal-btn" onclick="healPet()">
+                            <span class="btn-emoji">💊</span>
+                            <span class="btn-text">Heal</span>
+                        </button>
+                        <button class="action-btn train-btn" onclick="trainPet()">
+                            <span class="btn-emoji">💪</span>
+                            <span class="btn-text">Train</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="reset-section">
+                    <button onclick="resetGame()" class="reset-btn">🔄 Reset Game</button>
                 </div>
             </div>
 
-            <!-- Pet Name Input -->
-            <div class="pet-name-section">
-                <label for="petName">Pet Name:</label>
-                <input type="text" id="petName" placeholder="Enter your pet's name" value="Pixel">
-                <button onclick="updatePetName()" class="update-btn">Update Name</button>
+            <!-- Shop Tab -->
+            <div class="tab-content" id="shop-tab">
+                <div class="shop-panel">
+                    <h2>🛍️ Pet Shop</h2>
+                    <p class="shop-info">Your Coins: <strong id="shopCoins">0</strong> 💰</p>
+                    
+                    <div class="shop-category">
+                        <h3>🍕 Food Items</h3>
+                        <div class="shop-grid">
+                            <div class="shop-item" onclick="buyItem('pizza', 10)">
+                                <div class="item-emoji">🍕</div>
+                                <div class="item-name">Pizza</div>
+                                <div class="item-price">10 💰</div>
+                            </div>
+                            <div class="shop-item" onclick="buyItem('cake', 15)">
+                                <div class="item-emoji">🍰</div>
+                                <div class="item-name">Cake</div>
+                                <div class="item-price">15 💰</div>
+                            </div>
+                            <div class="shop-item" onclick="buyItem('sushi', 20)">
+                                <div class="item-emoji">🍣</div>
+                                <div class="item-name">Sushi</div>
+                                <div class="item-price">20 💰</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shop-category">
+                        <h3>🎮 Toys</h3>
+                        <div class="shop-grid">
+                            <div class="shop-item" onclick="buyItem('ball', 15)">
+                                <div class="item-emoji">⚽</div>
+                                <div class="item-name">Ball</div>
+                                <div class="item-price">15 💰</div>
+                            </div>
+                            <div class="shop-item" onclick="buyItem('frisbee', 20)">
+                                <div class="item-emoji">🥏</div>
+                                <div class="item-name">Frisbee</div>
+                                <div class="item-price">20 💰</div>
+                            </div>
+                            <div class="shop-item" onclick="buyItem('rocket', 50)">
+                                <div class="item-emoji">🚀</div>
+                                <div class="item-name">Rocket</div>
+                                <div class="item-price">50 💰</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shop-category">
+                        <h3>🎨 Pet Skins</h3>
+                        <div class="shop-grid">
+                            <div class="shop-item" onclick="buySkin('classic')">
+                                <div class="item-emoji">🟡</div>
+                                <div class="item-name">Classic</div>
+                                <div class="item-price">Owned</div>
+                            </div>
+                            <div class="shop-item" onclick="buySkin('fire')">
+                                <div class="item-emoji">🔥</div>
+                                <div class="item-name">Fire</div>
+                                <div class="item-price">100 💰</div>
+                            </div>
+                            <div class="shop-item" onclick="buySkin('ice')">
+                                <div class="item-emoji">❄️</div>
+                                <div class="item-name">Ice</div>
+                                <div class="item-price">100 💰</div>
+                            </div>
+                            <div class="shop-item" onclick="buySkin('galaxy')">
+                                <div class="item-emoji">🌌</div>
+                                <div class="item-name">Galaxy</div>
+                                <div class="item-price">150 💰</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Reset Game -->
-            <div class="reset-section">
-                <button onclick="resetGame()" class="reset-btn">🔄 Reset Game</button>
+            <!-- Mini-Game Tab -->
+            <div class="tab-content" id="game-tab">
+                <div class="game-panel">
+                    <h2>🎯 Catch the Treats!</h2>
+                    <p class="game-info">Click on the treats to catch them! Earn coins for each one!</p>
+                    
+                    <button id="startGameBtn" class="start-game-btn" onclick="startMiniGame()">Start Game</button>
+                    
+                    <div id="gameContainer" class="game-container" style="display: none;">
+                        <div class="game-stats">
+                            <div>Score: <span id="gameScore">0</span></div>
+                            <div>Time: <span id="gameTimer">30</span>s</div>
+                        </div>
+                        <div id="gameArea" class="game-area"></div>
+                    </div>
+
+                    <div id="gameResult" class="game-result" style="display: none;">
+                        <h3 id="resultTitle">Game Over!</h3>
+                        <p>You caught <span id="finalScore">0</span> treats!</p>
+                        <p>You earned <span id="earnedCoins">0</span> 💰</p>
+                        <button onclick="resetMiniGame()" class="play-again-btn">Play Again</button>
+                    </div>
+                </div>
             </div>
         </main>
 
         <footer>
-            <p>Made with ❤️ | Open Source | <a href="https://github.com/adeniyisogo/github-practical" target="_blank">GitHub</a></p>
+            <p>Made with ❤️ | Pixel Pet Pro | <a href="https://github.com/adeniyisogo/github-practical" target="_blank">GitHub</a></p>
         </footer>
     </div>
 
